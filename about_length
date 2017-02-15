@@ -27,19 +27,20 @@ eg:strlen("abc\0de") = 3
 函数库里没有直接用.len来求长度的，一般出现在结构体中，如:
 struct{int len;int id}s
 因此才会有s.len这种表达
-（4）length()
-是求string类对象的成员函数
-（5）size()
+（4）size()
 是求sgtring类对象的成员函数，计算当前容器拥有元素的个数
 如：std::vector<string> a(10)
     则a.size()=0
+（5）length()
+   是求string类对象的成员函数，与size()相同
 （6）capacity()
 计算容器在分配时的大小，若重新分配则大小就改变为新分配的容量大小
 如: std::vector<string> a(10)
     则a.capacity()=10
     
 【扩展】
-size_t：这是目标平台下最大的
-
+size_t：无符号整型，保存整数，sizeof的返回结果类型，是用来记录大小的数据类型，目标平台下最大的存储类型，其大小足以保证存储内存中对象的大小
+32位系统中，size_t大小4字节；64位系统，size_t大小8字节
+size_t常是unsigned int
 【参考】
 https://zhidao.baidu.com/question/212315411.html
