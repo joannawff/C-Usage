@@ -1,0 +1,5 @@
+1. const在*左边，被指物是常量，在*右边，指针是常量，出现在两边，则都是常量;
+2. 关键字在const前后的含义都是一样的，如：
+void f1(const Widget* p)
+void f1(Widget const * p)
+3. 
