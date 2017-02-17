@@ -1,14 +1,13 @@
 virtual主要功能是实现动态绑定，体现的是Run time Polymorphism（运行时多态性）。也就是说，当对象调用virtual函数时，实际调用的函数由base class指针指向的derived class对象决定。详细的例子见：http://stackoverflow.com/questions/2391679/why-do-we-need-virtual-functions-in-c
 触发动态绑定的两大必要条件：1. 基类函数指定virtual关键字 2. 通过基类类型的指针或引用调用
-virtual通常用在类继承上，non-virtual时，通过基类的指针创建派生类的对象，由于返回的对象保存在heap中，为了避免泄露内存和其他资源，都要delete指针指向的派生类对象。然而，实际执行时，派生类对象部分成分并没有销毁、析构函数也未能执行，而基类成分通常被销毁，这就造成局部销毁现象，造成资源泄露、败坏数据结构、在调试器上浪费时间等诸多问题。（摘自《Effective C++》第三版）
-
+virtual通常用在类继承上，non-virtual时，通过基类的指针创建派生类的对象，由于返回的对象保存在heap中，为了避免泄露内存和其他资源，都要delete指针指向的派生类对象。然而，实际执行时，派生类对象部分成分并没有销毁、析构函数也未能执行，而基类成分通常被销毁，这就造成局部销毁现象，造成资源泄露、败坏数据结构、在调试器上浪费时间等诸多问题。（摘自《Effective C++》第三版，条款07）
+注意，不能在构造和析构过程中调用virtual函数（这也是C++与Java、C#的不同之处）（摘自《Effective C++》第三版，条款09）
 virtual的几种用法：
 1. 虚函数
 base class中带有virtual关键字的函数，在不同的derived class中会有不同的实现方式；
 任何class只要带有virtual函数，就一定要有virtual析构函数。
 2. 纯虚函数
-要求
-
+pure virtual函数在base class中只有定义，没有声明。因此必须在derived class中实现。包含pure virtual函数的基类是abstract base class（抽象基类），
 3. 虚析构
 析构函数的调用顺序：son->Father->GrandFather
 4. 虚继承
