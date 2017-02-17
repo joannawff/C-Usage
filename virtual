@@ -7,5 +7,8 @@ virtual的几种用法：
 base class中带有virtual关键字的函数，在不同的derived class中会有不同的实现方式；
 任何class只要带有virtual函数，就一定要有virtual析构函数。
 2. 纯虚函数
+要求
+
 3. 虚析构
+析构函数的调用顺序：son->Father->GrandFather
 4. 虚继承
