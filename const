@@ -25,6 +25,24 @@ const会防止误修改函数参数的值
 （1）值传递在调用和返回时都会创建副本，额外分配内存。而reference引用传递传的是地址，减少内存开销。
 （2）const很重要，会保证传来的对象不会被修改
 只有当对象是内置类型、STL迭代器和函数对象时，用pass-by-value更合适。用户自定义类型最好用pass-by-reference-to-const。
+注意，const成员函数不能改变任何non-static成员变量；
+11. const的non-const孪生兄弟函数
+在C++中，可以构造与const同名的non-const函数，并在non-const函数中调用这个const函数，只需要在调用过程中进行两次转型操作：
+转型1：static_cast，作用是为调用const函数的指针对象参数添加const
+转型2：const_cast，作用是从返回值中移除const
+如：
+const char& operator[] (std::size_t position) const {
+  ...
+  return text[position]
+}
+char& operator[] (std::size_t position) {
+  return 
+    const_catst<char&>(
+      static_cast<const TextBlock&>(*this)
+        [position]
+    );
+ }
+  因此，我们可以运用const成员函数实现其non-const孪生兄弟，可以避免代码重复。然而，反过来却不能成立。不能在const函数中调用non-const函数，因为这是一种错误的行为。
 【mutable】
 const反义词，可以在const声明的成员函数中突破const限制，用来修改一些与对象状态无关的变量
 
@@ -41,6 +59,14 @@ const——有数据类型，编译时会类型检查
 define——不分配内存，给出立即数，使用多少次就替换多少次，内存中就有多少个拷贝，消耗内存
 const——静态存储区分配空间，运行过程中内存只有一个拷贝。而且编译时不分配内存空间，而是保存在符号表中，没有了存储与读取操作，提高了效率。
 
+【总结】
+const可操作的对象：
+1. 指针，迭代器
+2. 指针，迭代器，reference指涉的对象
+3. 函数参数和返回类型上
+4. loca变量，成员函数上等
+
 【参考】
+《Effective C++》第三版 条款03
 http://www.cnblogs.com/xudong-bupt/p/3509567.html
 http://blog.csdn.net/yingyujianmo/article/details/51206460
