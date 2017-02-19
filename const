@@ -25,7 +25,6 @@ const会防止误修改函数参数的值
 （1）值传递在调用和返回时都会创建副本，额外分配内存。而reference引用传递传的是地址，减少内存开销。
 （2）const很重要，会保证传来的对象不会被修改
 只有当对象是内置类型、STL迭代器和函数对象时，用pass-by-value更合适。用户自定义类型最好用pass-by-reference-to-const。
-
 【mutable】
 const反义词，可以在const声明的成员函数中突破const限制，用来修改一些与对象状态无关的变量
 
