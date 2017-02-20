@@ -1,7 +1,12 @@
 1.map
 map内部是红黑树（严格的平衡二叉树），对数据具有自动排序功能，因而map的数据是有序的。
 
-2.vector&array
+2.vector
 vector&array
 same:连续存储，可由positions获取
 different:vector动态空间，长度不固定。vector会因长度增加而重新分配空间，因而它的实际存量要大些。
+#vector的操作
+(1) begin: 指向第一个元素
+(2)end：指向最后一个元素的下一个位置
+(3)rbegin：指向最后一个元素（逆序后第一个元素）
+(4)rend：指向第一个元素的前一个位置（逆序后最后一个元素的下一个位置）assign
