@@ -1,2 +1,7 @@
-[map]
+1.map
 map内部是红黑树（严格的平衡二叉树），对数据具有自动排序功能，因而map的数据是有序的。
+
+2.vector&array
+vector&array
+same:连续存储，可由offset获取
+different:vector动态空间，长度不固定
