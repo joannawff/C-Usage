@@ -3,5 +3,5 @@ map内部是红黑树（严格的平衡二叉树），对数据具有自动排�
 
 2.vector&array
 vector&array
-same:连续存储，可由offset获取
-different:vector动态空间，长度不固定
+same:连续存储，可由positions获取
+different:vector动态空间，长度不固定。vector会因长度增加而重新分配空间，因而它的实际存量要大些。
